@@ -18,6 +18,7 @@ public class Collectable2 : MonoBehaviour
     {
         PlayerInZone = false;                   //player not in zone       
         txtToDisplay.SetActive(false);
+        collectable.GetComponent<Renderer>().enabled = true;
     }
 
     private void Update()
@@ -25,10 +26,12 @@ public class Collectable2 : MonoBehaviour
         if (PlayerInZone && Input.GetMouseButtonDown(0))           //if in zone and press Left Click
         {
             txtToDisplay.SetActive(false);
+            collectable.GetComponent<AudioSource>().Play();
             trapdoorParent.SetActive(!trapdoorParent.activeSelf);
             trapdoorParent2.SetActive(!trapdoorParent2.activeSelf);
             UIElement.SetActive(!UIElement.activeSelf);
-            collectable.SetActive(!collectable.activeSelf);
+            collectable.GetComponent<Renderer>().enabled = false;
+            transform.position = new Vector3(0, 10, 0);
         }
     }
 
